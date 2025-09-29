@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # MCP Config Manager - One-Click Installer
-# Usage: curl -fsSL https://raw.githubusercontent.com/holstein13/mcp-config-manager/main/install.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/Bafff/mcp-config-manager/personal-dev/install.sh | bash
 
 set -e
 
@@ -16,7 +16,8 @@ WHITE='\033[1;37m'
 NC='\033[0m' # No Color
 
 # Installation settings
-REPO_URL="https://github.com/holstein13/mcp-config-manager.git"
+REPO_URL="https://github.com/Bafff/mcp-config-manager.git"
+REPO_BRANCH="personal-dev"
 APP_NAME="mcp-config-manager"
 DEFAULT_INSTALL_DIR="$HOME/bin"
 VENV_NAME="venv"
@@ -164,7 +165,7 @@ install_application() {
     fi
 
     # Clone repository
-    git clone "$REPO_URL" "$APP_DIR" --quiet
+    git clone --branch "$REPO_BRANCH" "$REPO_URL" "$APP_DIR" --quiet
     cd "$APP_DIR"
 
     print_success "Application downloaded"
@@ -242,7 +243,7 @@ VENV_PATH="\$INSTALL_DIR/$VENV_NAME"
 # Check if installation exists
 if [ ! -d "\$INSTALL_DIR" ]; then
     echo "❌ MCP Config Manager installation not found at \$INSTALL_DIR"
-    echo "   Please reinstall using: curl -fsSL https://raw.githubusercontent.com/holstein13/mcp-config-manager/main/install.sh | bash"
+    echo "   Please reinstall using: curl -fsSL https://raw.githubusercontent.com/Bafff/mcp-config-manager/personal-dev/install.sh | bash"
     exit 1
 fi
 
@@ -347,7 +348,7 @@ case "\$1" in
         else
             echo "❌ Cannot update: Installation not git-enabled"
             echo "💡 Re-run the installer to get the latest version:"
-            echo "   curl -fsSL https://raw.githubusercontent.com/holstein13/mcp-config-manager/main/install.sh | bash"
+            echo "   curl -fsSL https://raw.githubusercontent.com/Bafff/mcp-config-manager/personal-dev/install.sh | bash"
         fi
         exit 0
         ;;
@@ -656,7 +657,7 @@ print_final_instructions() {
         echo -e "  ${YELLOW}Restart terminal or run: source ~/.bashrc${NC}"
     fi
     echo ""
-    echo -e "${WHITE}Documentation:${NC} https://github.com/holstein13/mcp-config-manager"
+    echo -e "${WHITE}Documentation:${NC} https://github.com/Bafff/mcp-config-manager"
     echo -e "${WHITE}Uninstall:${NC} ${CYAN}$INSTALL_DIR/mcp uninstall${NC}"
     echo ""
 }
