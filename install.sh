@@ -165,8 +165,9 @@ install_application() {
     fi
 
     # Clone repository
-    git clone --branch "$REPO_BRANCH" "$REPO_URL" "$APP_DIR" --quiet
+    git clone "$REPO_URL" "$APP_DIR" --quiet
     cd "$APP_DIR"
+    git checkout "$REPO_BRANCH" --quiet
 
     print_success "Application downloaded"
 
