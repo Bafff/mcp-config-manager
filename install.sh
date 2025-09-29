@@ -106,7 +106,7 @@ get_install_directory() {
     echo ""
 
     while true; do
-        read -p "Enter your choice (1-4): " choice < /dev/tty
+        read -p "Enter your choice (1-4): " choice
         case $choice in
             1)
                 INSTALL_DIR="$HOME/bin"
@@ -122,7 +122,7 @@ get_install_directory() {
                 break
                 ;;
             4)
-                read -p "Enter custom directory path: " custom_dir < /dev/tty
+                read -p "Enter custom directory path: " custom_dir
                 if [[ "$custom_dir" = /* ]]; then
                     INSTALL_DIR="$custom_dir"
                 else
@@ -588,7 +588,7 @@ setup_shell_integration() {
     echo "This will allow you to run 'mcp' from anywhere in your terminal."
     echo ""
 
-    read -p "Add to shell PATH? (y/n): " add_to_path < /dev/tty
+    read -p "Add to shell PATH? (y/n): " add_to_path
 
     if [[ "$add_to_path" =~ ^[Yy]$ ]]; then
         # Detect shell and add to appropriate config file
@@ -701,7 +701,7 @@ echo "This will remove MCP Config Manager from your system."
 echo -e "Installation directory: ${YELLOW}$SCRIPT_DIR${NC}"
 echo ""
 
-read -p "Are you sure you want to uninstall? (y/N): " confirm < /dev/tty
+read -p "Are you sure you want to uninstall? (y/N): " confirm
 
 if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
     echo "Uninstall cancelled."
@@ -758,7 +758,7 @@ main() {
     # Check if we're running as root (not recommended)
     if [[ $EUID -eq 0 ]]; then
         print_warning "Running as root is not recommended. Install as a regular user instead."
-        read -p "Continue anyway? (y/N): " continue_root < /dev/tty
+        read -p "Continue anyway? (y/N): " continue_root
         if [[ ! "$continue_root" =~ ^[Yy]$ ]]; then
             exit 1
         fi
